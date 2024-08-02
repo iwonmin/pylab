@@ -31,18 +31,22 @@ fig, ax = plt.subplots()
 ax.add_patch(patches.Rectangle((-120, -120), 240, 240, fill=True, color='black'))
 ax.add_patch(patches.Circle((0, 0), 35, color='red'))
 
-wedge1 = patches.Wedge(center=(-120, 120), r=70, theta1=180, theta2=90, 
-                          facecolor='blue', edgecolor='none')
+wedge1 = patches.Wedge(center=(-120, 120), r=70, theta1=180, theta2=90, facecolor='blue', edgecolor='none')
 ax.add_patch(wedge1)
-wedge2 = patches.Wedge(center=(-120, -120), r=70, theta1=0, theta2=90, 
-                          facecolor='blue', edgecolor='none')
+wedge2 = patches.Wedge(center=(-120, -120), r=70, theta1=0, theta2=90, facecolor='blue', edgecolor='none')
 ax.add_patch(wedge2)
-wedge3 = patches.Wedge(center=(120, 120), r=70, theta1=180, theta2=270, 
-                          facecolor='blue', edgecolor='none')
+wedge3 = patches.Wedge(center=(120, 120), r=70, theta1=180, theta2=270, facecolor='blue', edgecolor='none')
 ax.add_patch(wedge3)
-wedge4 = patches.Wedge(center=(120, -120), r=70, theta1=90, theta2=180, 
-                          facecolor='blue', edgecolor='none')
+wedge4 = patches.Wedge(center=(120, -120), r=70, theta1=90, theta2=180, facecolor='blue', edgecolor='none')
 ax.add_patch(wedge4)
+line1 = patches.FancyArrowPatch((31.72,31.72), (63.54,63.54), mutation_scale=0, color='yellow', linewidth=15, arrowstyle='-', linestyle='-')
+ax.add_patch(line1)
+line2 = patches.FancyArrowPatch((-31.72,-31.72), (-63.54,-63.54), mutation_scale=0, color='yellow', linewidth=15, arrowstyle='-', linestyle='-')
+ax.add_patch(line2)
+line3 = patches.FancyArrowPatch((31.72,-31.72), (63.54,-63.54), mutation_scale=0, color='yellow', linewidth=15, arrowstyle='-', linestyle='-')
+ax.add_patch(line3)
+line4 = patches.FancyArrowPatch((-31.72,31.72), (-63.54,63.54), mutation_scale=0, color='yellow', linewidth=15, arrowstyle='-', linestyle='-')
+ax.add_patch(line4)
 
 # 로봇의 화살표
 arrow = patches.FancyArrowPatch((robot.x, robot.y), 
