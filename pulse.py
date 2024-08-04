@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
 # 시리얼 포트 설정
-serial_port = 'COM30'  # 실제 연결된 포트로 변경
-baud_rate = 9600  # STM32 보드와 일치하도록 설정
+serial_port = 'COM4'  # 실제 연결된 포트로 변경
+baud_rate = 115200  # STM32 보드와 일치하도록 설정
 
 # 시리얼 포트 열기
 ser = serial.Serial(serial_port, baud_rate, timeout=1)
@@ -14,7 +14,7 @@ ser = serial.Serial(serial_port, baud_rate, timeout=1)
 data = []
 timestamps = []
 
-# 플롯 설정
+# 플롯 
 fig, ax = plt.subplots()
 line, = ax.plot([], [], label='Data')
 ax.set_xlabel('Time (s)')
@@ -28,7 +28,7 @@ x_range = 5
 # 초기화 함수
 def init():
     ax.set_xlim(0, x_range)
-    ax.set_ylim(0, 1)  # y축 범위는 실제 데이터에 따라 조정
+    ax.set_ylim(-2, 2)  # y축 범위는 실제 데이터에 따라 조정
     return line,
 
 # 업데이트 함수
@@ -45,7 +45,7 @@ def update(frame):
         end = start + x_range
 
         ax.set_xlim(start, end)
-        ax.set_ylim(min(data), max(data))
+        # ax.set_ylim(min(data), max(data))
 
         line.set_data(timestamps, data)
 

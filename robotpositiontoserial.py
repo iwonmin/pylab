@@ -12,15 +12,15 @@ class Robot:
         self.angle = angle
     
     def update(self, x, y, angle):
-        self.x = x
-        self.y = y
-        self.angle = angle
+        self.x += x
+        self.y += y
+        self.angle += angle
 
-# 로봇 초기 설정
-robot = Robot(x=60, y=0, angle=0)
+# (절대 좌표에서 로봇 위치)
+robot = Robot(x=60, y=0, angle=90)
 
 # 시리얼 포트 설정 (포트와 보드레이트를 실제 사용하는 값으로 바꿔야 함)
-ser = serial.Serial('COM3', 9600, timeout=1)  # Windows의 경우 'COMx', Linux/Mac은 '/dev/ttyUSBx'
+ser = serial.Serial('COM4', 115200, timeout=1)  # Windows의 경우 'COMx', Linux/Mac은 '/dev/ttyUSBx'
 
 # 그래프 설정
 fig, ax = plt.subplots()
@@ -39,9 +39,9 @@ ax.add_patch(wedge3)
 wedge4 = patches.Wedge(center=(120, -120), r=70, theta1=90, theta2=180, facecolor='blue', edgecolor='none')
 ax.add_patch(wedge4)
 
-# 로봇의 화살표
+# 로봇의 화살표(로봇 초기 위치)
 arrow = patches.FancyArrowPatch((robot.x, robot.y), 
-                                (robot.x + 5 * np.cos(robot.angle), robot.y + 5 * np.sin(robot.angle)), 
+                                (robot.x + 5 * np.cos(np.deg2rad(robot.angle)), robot.y + 5 * np.sin(np.deg2rad(robot.angle))), 
                                 mutation_scale=50, color='white', 
                                 linestyle='-', arrowstyle='-|>', connectionstyle='arc3,rad=0.2')
 ax.add_patch(arrow)
@@ -63,9 +63,9 @@ def update(frame):
             angle = float(angle_str)
             robot.update(x, y, angle)
             
-            # 화살표 업데이트
+            # 화살표 업데이트(로봇 초기위치에서 로봇의 상대좌표만큼 increment)
             arrow.set_positions((robot.x, robot.y),
-                                (robot.x + 5 * np.cos(robot.angle), robot.y + 5 * np.sin(robot.angle)))
+                                (robot.x + 5 * np.cos(np.deg2rad(robot.angle)), robot.y + 5 * np.sin(np.deg2rad(robot.angle))))
             arrow.set_figure(fig)  # Update figure to reflect changes
         except ValueError:
             print("Received data in unexpected format.")
