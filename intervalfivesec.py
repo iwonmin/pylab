@@ -3,7 +3,7 @@ import time
 import matplotlib.pyplot as plt
 
 # 시리얼 포트 설정
-serial_port = 'COM4'  # 실제 연결된 포트로 변경
+serial_port = 'COM30'  # 실제 연결된 포트로 변경
 baud_rate = 115200  # STM32 보드와 일치하도록 설정
 
 # 시리얼 포트 열기
