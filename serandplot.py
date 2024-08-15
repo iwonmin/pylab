@@ -7,7 +7,7 @@ baud_rate = 115200  # STM32 보드와 일치하도록 설정
 
 # 시리얼 포트 열기
 ser = serial.Serial(serial_port, baud_rate, timeout=1)
-
+ser1 = serial.Serial('COM5',9600,timeout=1)
 # 데이터 수집 리스트
 data = []
 timestamps = []
